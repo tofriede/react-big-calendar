@@ -50,10 +50,6 @@
   flex: 0 0 auto; // should not shrink below height
   flex-direction: row;
 
-  &.rbc-overflowing {
-    border-right: 1px solid @cell-border;
-  }
-
   .rbc-rtl &.rbc-overflowing {
     border-right-width: 0;
     border-left: 1px solid @cell-border;
@@ -84,6 +80,10 @@
 
   .rbc-rtl &  {
     border-left-width: 0;
+    border-right: 1px solid @cell-border;
+  }
+
+  &.rbc-overflowing {
     border-right: 1px solid @cell-border;
   }
 }
@@ -124,4 +124,15 @@
 
   background-color: @current-time-color;
   pointer-events: none;
+}
+
+.hiddenScroller {
+  overflow: scroll;
+  visibility: hidden;
+  flex: none;
+  display: block;
+}
+
+.overflowLastDayColumn {
+  border-right: 1px solid @cell-border;
 }
