@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import cn from 'classnames'
-import scrollbarSize from 'dom-helpers/util/scrollbarSize'
 import React from 'react'
 
 import dates from './utils/dates'
@@ -152,18 +151,23 @@ class TimeGridHeader extends React.Component {
 
     let style = {}
     if (isOverflowing) {
-      style[rtl ? 'marginLeft' : 'marginRight'] = `${scrollbarSize()}px`
+      //style[rtl ? 'marginLeft' : 'marginRight'] = `${scrollbarSize()}px`
     }
 
+    const hiddenScroller = isOverflowing ? (
+      <div className={'hiddenScroller'} />
+    ) : null
+
     return (
-      <div
-        ref="headerCell"
-        style={style}
-        className={cn('rbc-time-header', isOverflowing && 'rbc-overflowing')}
-      >
+      <div ref="headerCell" style={style} className={cn('rbc-time-header')}>
         <div className="rbc-label rbc-time-header-gutter" style={{ width }} />
 
-        <div className="rbc-time-header-content">
+        <div
+          className={cn(
+            'rbc-time-header-content',
+            isOverflowing && 'rbc-overflowing'
+          )}
+        >
           <div className="rbc-row rbc-time-header-cell">
             {this.renderHeaderCells(range)}
           </div>
@@ -199,6 +203,7 @@ class TimeGridHeader extends React.Component {
             longPressThreshold={this.props.longPressThreshold}
           />
         </div>
+        {hiddenScroller}
       </div>
     )
   }

@@ -192,6 +192,7 @@ export default class TimeGrid extends Component {
             key={idx + '-' + id}
             date={date}
             events={eventsToDisplay}
+            overflowClass={idx === range.length - 1 && this.state.isOverflowing}
           />
         )
       })
@@ -245,7 +246,12 @@ export default class TimeGrid extends Component {
     allDayEvents.sort((a, b) => sortEvents(a, b, this.props))
 
     return (
-      <div className="rbc-time-view">
+      <div
+        className={cn(
+          'rbc-time-view',
+          !this.state.isOverflowing && 'noOverflow'
+        )}
+      >
         <TimeGridHeader
           range={range}
           events={allDayEvents}

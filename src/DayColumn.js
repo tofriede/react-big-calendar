@@ -60,6 +60,7 @@ class DayColumn extends React.Component {
     eventComponent: elementType,
     eventWrapperComponent: elementType.isRequired,
     resource: PropTypes.string,
+    overflowClass: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -101,6 +102,7 @@ class DayColumn extends React.Component {
       culture,
       slotPropGetter,
       resource,
+      overflowClass,
       timeSlotWrapperComponent,
       dayPropGetter,
     } = this.props
@@ -121,6 +123,7 @@ class DayColumn extends React.Component {
           'rbc-day-slot',
           'rbc-time-column',
           selecting && 'rbc-slot-selecting',
+          overflowClass && 'overflowLastDayColumn',
           dates.eq(date, current, 'day') && 'rbc-today'
         )}
       >

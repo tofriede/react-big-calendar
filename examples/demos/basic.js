@@ -11,6 +11,7 @@ let Basic = () => (
     step={60}
     showMultiDayTimes
     defaultDate={new Date(2015, 3, 1)}
+    style={{ maxHeight: '400px' }}
   />
 )
 

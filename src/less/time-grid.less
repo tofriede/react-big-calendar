@@ -76,7 +76,7 @@
   flex: 1;
   min-width: 0;
   flex-direction: column;
-  border-left: 1px solid @cell-border;
+  /*border-left: 1px solid @cell-border;*/
 
   .rbc-rtl &  {
     border-left-width: 0;
@@ -84,7 +84,7 @@
   }
 
   &.rbc-overflowing {
-    border-right: 1px solid @cell-border;
+    /*border-right: 1px solid @cell-border;*/
   }
 }
 
@@ -102,7 +102,7 @@
   }
 
   > * + * > * {
-    border-left: 1px solid @cell-border;
+    /*border-left: 1px solid @cell-border;*/
   }
 
   .rbc-rtl & > * + * > * {
@@ -134,5 +134,9 @@
 }
 
 .overflowLastDayColumn {
-  border-right: 1px solid @cell-border;
+  /*border-right: 1px solid @cell-border;*/
+}
+
+.noOverflow {
+  border-right: none !important;
 }
