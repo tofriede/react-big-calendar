@@ -174,10 +174,10 @@ export default class TimeGrid extends Component {
         let eventsToDisplay = !resource
           ? daysEvents
           : daysEvents.filter(
-              event =>
-                get(event, resourceAccessor) ===
-                get(resource, resourceIdAccessor)
-            )
+            event =>
+              get(event, resourceAccessor) ===
+              get(resource, resourceIdAccessor)
+          )
 
         return (
           <DayColumn
@@ -361,7 +361,7 @@ export default class TimeGrid extends Component {
     if (timeGutter && current >= min && current <= max) {
       const pixelHeight = timeGutter.offsetHeight
       const dayPixelWidth =
-        (content.offsetWidth - timeGutter.offsetWidth) / this.slots
+        (content.offsetWidth - timeGutter.offsetWidth - 21) / this.slots
       const dayOffset =
         range.findIndex(d => dates.eq(d, dates.today(), 'day')) * dayPixelWidth
       const offset = Math.floor(factor * pixelHeight)
