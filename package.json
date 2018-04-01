@@ -84,6 +84,7 @@
     "lint-staged": "^6.0.0",
     "markdown-jsx-loader": "^3.0.2",
     "marked": "^0.3.5",
+    "material-ui": "^1.0.0-beta.38",
     "moment": "^2.17.1",
     "mt-changelog": "^0.6.1",
     "prettier": "^1.9.1",

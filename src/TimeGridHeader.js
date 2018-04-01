@@ -9,6 +9,7 @@ import DateContentRow from './DateContentRow'
 import Header from './Header'
 import { notify } from './utils/helpers'
 import { accessor as get } from './utils/accessors'
+import Avatar from 'material-ui/Avatar'
 
 class TimeGridHeader extends React.Component {
   static propTypes = {
@@ -66,15 +67,18 @@ class TimeGridHeader extends React.Component {
 
     return range.map((date, i) => {
       return resources.map((resource, j) => {
+
+        const resourceTitle = get(resource, resourceTitleAccessor).toUpperCase().split(" ");
         return (
           <div
             key={`${i}-${j}`}
             className={cn(
               'rbc-header',
+              'avatar-container',
               dates.eq(date, today, 'day') && 'rbc-today'
             )}
           >
-            {get(resource, resourceTitleAccessor)}
+            <Avatar className="ressource-avatar">{resourceTitle[0].charAt(0) + resourceTitle[1].charAt(0)}</Avatar>
           </div>
         )
       })
@@ -127,8 +131,8 @@ class TimeGridHeader extends React.Component {
               {header}
             </a>
           ) : (
-            <span>{header}</span>
-          )}
+              <span>{header}</span>
+            )}
         </div>
       )
     })
