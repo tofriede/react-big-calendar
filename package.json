@@ -1,6 +1,6 @@
 {
   "name": "tamavo-calendar",
-  "version": "0.19.3",
+  "version": "0.19.4",
   "description": "Calendar! with events",
   "author": "Tobias Friedetzki <tobiasfriedetzki@web.de>",
   "repository": "tofriede/react-big-calendar",
