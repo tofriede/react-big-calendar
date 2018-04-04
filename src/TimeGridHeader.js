@@ -69,6 +69,8 @@ class TimeGridHeader extends React.Component {
       return resources.map((resource, j) => {
 
         const resourceTitle = get(resource, resourceTitleAccessor).toUpperCase().split(" ");
+        const resourceLetters = resourceTitle[0].charAt(0) + resourceTitle[1].charAt(0);
+        const avatarChildren = resource.displayData === undefined ? resourceLetters : undefined;
         return (
           <div
             key={`${i}-${j}`}
@@ -78,7 +80,11 @@ class TimeGridHeader extends React.Component {
               dates.eq(date, today, 'day') && 'rbc-today'
             )}
           >
-            <Avatar className="ressource-avatar">{resourceTitle[0].charAt(0) + resourceTitle[1].charAt(0)}</Avatar>
+            <Avatar
+              className="ressource-avatar"
+              children={avatarChildren}
+              src={resource.displayData}
+            />
           </div>
         )
       })
