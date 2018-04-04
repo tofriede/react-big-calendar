@@ -14,6 +14,8 @@ import { accessor, dateFormat } from './utils/propTypes'
 import { notify } from './utils/helpers'
 import { accessor as get } from './utils/accessors'
 import { inRange, sortEvents } from './utils/eventLevels'
+import ReactResizeDetector from 'react-resize-detector'
+import scrollbarSize from 'dom-helpers/util/scrollbarSize'
 
 export default class TimeGrid extends Component {
   static propTypes = {
@@ -295,6 +297,7 @@ export default class TimeGrid extends Component {
           {this.renderEvents(range, rangeEvents, getNow(), resources || [null])}
 
           <div ref="timeIndicator" className="rbc-current-time-indicator" />
+          <ReactResizeDetector handleWidth={true} onResize={this.positionTimeIndicator.bind(this)} />
         </div>
       </div>
     )
@@ -361,7 +364,7 @@ export default class TimeGrid extends Component {
     if (timeGutter && current >= min && current <= max) {
       const pixelHeight = timeGutter.offsetHeight
       const dayPixelWidth =
-        (content.offsetWidth - timeGutter.offsetWidth - 21) / this.slots
+        (content.offsetWidth - timeGutter.offsetWidth - (this.state.isOverflowing ? scrollbarSize() : 0)) / this.slots
       const dayOffset =
         range.findIndex(d => dates.eq(d, dates.today(), 'day')) * dayPixelWidth
       const offset = Math.floor(factor * pixelHeight)
