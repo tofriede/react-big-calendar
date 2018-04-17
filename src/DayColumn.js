@@ -228,23 +228,34 @@ class DayColumn extends React.Component {
         continuesAfter: _continuesAfter,
       }
 
+      let targetRef = null;
       return (
-        <EventWrapper {...wrapperProps} key={'evt_' + idx}>
+        <EventWrapper
+          {...wrapperProps}
+          key={'evt_' + idx}
+          style={{
+            ...xStyle,
+            top: `${top}%`,
+            height: `${height}%`,
+            [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
+            width: `${width}%`,
+            position: 'absolute',
+            minHeight: '20px'
+          }}
+        >
           <div
-            style={{
-              ...xStyle,
-              top: `${top}%`,
-              height: `${height}%`,
-              [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
-              width: `${width}%`,
-            }}
+            style={{ 
+              position: 'relative',
+              height: `100%`,
+              width: `100%`,
+             }}
             title={
               tooltip
                 ? (typeof label === 'string' ? label + ': ' : '') + tooltip
                 : undefined
             }
-            onClick={e => this._select(event, e)}
-            onDoubleClick={e => this._doubleClick(event, e)}
+            //onClick={e => this._select(event, e)}
+            //onDoubleClick={e => this._doubleClick(event, e)}
             className={cn('rbc-event', className, {
               'rbc-selected': _isSelected,
               'rbc-event-continues-earlier': continuesPrior,
@@ -258,8 +269,8 @@ class DayColumn extends React.Component {
               {EventComponent ? (
                 <EventComponent event={event} title={title} />
               ) : (
-                title
-              )}
+                  title
+                )}
             </div>
           </div>
         </EventWrapper>
