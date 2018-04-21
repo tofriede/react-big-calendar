@@ -228,13 +228,16 @@ class DayColumn extends React.Component {
         continuesAfter: _continuesAfter,
       }
 
+      let targetRef = null;
+
       return (
         <EventWrapper {...wrapperProps} key={'evt_' + idx}>
           <div
+            ref={(div) => targetRef = div}
             style={{
               ...xStyle,
               top: `${top}%`,
-              height: `${height}%`,
+              height: `calc(${height}% - 2px)`,
               [isRtl ? 'right' : 'left']: `${Math.max(0, xOffset)}%`,
               width: `${width}%`,
             }}
@@ -243,7 +246,7 @@ class DayColumn extends React.Component {
                 ? (typeof label === 'string' ? label + ': ' : '') + tooltip
                 : undefined
             }
-            onClick={e => this._select(event, e)}
+            onClick={e => this._select(event, e, targetRef)}
             onDoubleClick={e => this._doubleClick(event, e)}
             className={cn('rbc-event', className, {
               'rbc-selected': _isSelected,
@@ -258,8 +261,8 @@ class DayColumn extends React.Component {
               {EventComponent ? (
                 <EventComponent event={event} title={title} />
               ) : (
-                title
-              )}
+                  title
+                )}
             </div>
           </div>
         </EventWrapper>

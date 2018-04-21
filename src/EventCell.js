@@ -74,11 +74,14 @@ class EventCell extends React.Component {
       continuesAfter,
     }
 
+    let targetRef = null;
+
     return (
       // give EventWrapper some extra info to help it determine whether it
       // it's in a row, etc. Useful for dnd, etc.
       <EventWrapper {...wrapperProps} isRow={true}>
         <div
+          ref={(div) => targetRef = div}
           style={{ ...props.style, ...style }}
           className={cn('rbc-event', className, xClassName, {
             'rbc-selected': selected,
@@ -86,15 +89,15 @@ class EventCell extends React.Component {
             'rbc-event-continues-prior': continuesPrior,
             'rbc-event-continues-after': continuesAfter,
           })}
-          onClick={e => onSelect(event, e)}
+          onClick={e => onSelect(event, e, targetRef)}
           onDoubleClick={e => onDoubleClick(event, e)}
         >
           <div className="rbc-event-content" title={tooltip || undefined}>
             {Event ? (
               <Event event={event} title={title} isAllDay={allDay} />
             ) : (
-              title
-            )}
+                title
+              )}
           </div>
         </div>
       </EventWrapper>
