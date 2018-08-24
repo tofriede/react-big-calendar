@@ -9,7 +9,7 @@ import DateContentRow from './DateContentRow'
 import Header from './Header'
 import { notify } from './utils/helpers'
 import { accessor as get } from './utils/accessors'
-import Avatar from 'material-ui/Avatar'
+import Avatar from '@material-ui/core/Avatar'
 
 class TimeGridHeader extends React.Component {
   static propTypes = {
